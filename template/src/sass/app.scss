@@ -39,7 +39,7 @@
  | xs: 0, sm: 640px, md: 768px, lg: 1024px, xl: 1280px, xxl: 1536px
  |
  */
-@import "~@left4code/tw-starter/dist/scss/breakpoint";
+@import "src/sass/includes/tw-starter/dist/scss/breakpoint";
 
 /*
  |--------------------------------------------------------------------------
@@ -49,7 +49,7 @@
  | Import helper mixins.
  |
  */
-@import "~@left4code/tw-starter/dist/scss/mixins/media";
+@import "src/sass/includes/tw-starter/dist/scss/mixins/media";
 
 /*
  |--------------------------------------------------------------------------
@@ -59,40 +59,40 @@
  | Import 3rd party library CSS/SASS files.
  |
  */
-@import "~@left4code/tw-starter/dist/scss/accordion";
-@import "~@left4code/tw-starter/dist/scss/alert";
-@import "~@left4code/tw-starter/dist/scss/btn";
-@import "~@left4code/tw-starter/dist/scss/dropdown";
-@import "~@left4code/tw-starter/dist/scss/file";
-@import "~@left4code/tw-starter/dist/scss/form-check";
-@import "~@left4code/tw-starter/dist/scss/form-control";
-@import "~@left4code/tw-starter/dist/scss/form-help";
-@import "~@left4code/tw-starter/dist/scss/form-inline";
-@import "~@left4code/tw-starter/dist/scss/form-label";
-@import "~@left4code/tw-starter/dist/scss/form-select";
-@import "~@left4code/tw-starter/dist/scss/image-fit";
-@import "~@left4code/tw-starter/dist/scss/input-group";
-@import "~@left4code/tw-starter/dist/scss/intro";
-@import "~@left4code/tw-starter/dist/scss/modal";
-@import "~@left4code/tw-starter/dist/scss/pagination";
-@import "~@left4code/tw-starter/dist/scss/progress";
-@import "~@left4code/tw-starter/dist/scss/scrollbar";
-@import "~@left4code/tw-starter/dist/scss/tab";
-@import "~@left4code/tw-starter/dist/scss/table";
-@import "~@left4code/tw-starter/dist/scss/typing-dots";
-@import "~@left4code/tw-starter/dist/scss/zoom-in";
-@import "~@left4code/tw-starter/dist/scss/box";
-@import "~tiny-slider/src/tiny-slider";
-@import "~highlight.js/scss/github";
-@import "~tippy.js/dist/tippy";
-@import "~tippy.js/themes/light";
-@import "~tippy.js/dist/svg-arrow";
-@import "~tippy.js/animations/shift-away";
-@import "~tail.select/css/default/tail.select-light";
-@import "~toastify-js/src/toastify";
-@import "~dropzone/dist/dropzone";
-@import "~zoom-vanilla.js/dist/zoom";
-@import "~tabulator-tables/dist/css/tabulator";
+@import "src/sass/includes/tw-starter/dist/scss/accordion";
+@import "src/sass/includes/tw-starter/dist/scss/alert";
+@import "src/sass/includes/tw-starter/dist/scss/btn";
+@import "src/sass/includes/tw-starter/dist/scss/dropdown";
+@import "src/sass/includes/tw-starter/dist/scss/file";
+@import "src/sass/includes/tw-starter/dist/scss/form-check";
+@import "src/sass/includes/tw-starter/dist/scss/form-control";
+@import "src/sass/includes/tw-starter/dist/scss/form-help";
+@import "src/sass/includes/tw-starter/dist/scss/form-inline";
+@import "src/sass/includes/tw-starter/dist/scss/form-label";
+@import "src/sass/includes/tw-starter/dist/scss/form-select";
+@import "src/sass/includes/tw-starter/dist/scss/image-fit";
+@import "src/sass/includes/tw-starter/dist/scss/input-group";
+@import "src/sass/includes/tw-starter/dist/scss/intro";
+@import "src/sass/includes/tw-starter/dist/scss/modal";
+@import "src/sass/includes/tw-starter/dist/scss/pagination";
+@import "src/sass/includes/tw-starter/dist/scss/progress";
+@import "src/sass/includes/tw-starter/dist/scss/scrollbar";
+@import "src/sass/includes/tw-starter/dist/scss/tab";
+@import "src/sass/includes/tw-starter/dist/scss/table";
+@import "src/sass/includes/tw-starter/dist/scss/typing-dots";
+@import "src/sass/includes/tw-starter/dist/scss/zoom-in";
+@import "src/sass/includes/tw-starter/dist/scss/box";
+@import "node_modules/tiny-slider/src/tiny-slider";
+@import "node_modules/highlight.js/scss/github";
+@import "node_modules/tippy.js/dist/tippy";
+@import "node_modules/tippy.js/themes/light";
+@import "node_modules/tippy.js/dist/svg-arrow";
+@import "node_modules/tippy.js/animations/shift-away";
+@import "node_modules/tail.select/css/default/tail.select-light";
+@import "node_modules/toastify-js/src/toastify";
+@import "node_modules/dropzone/dist/dropzone";
+@import "node_modules/zoom-vanilla.js/dist/zoom";
+@import "node_modules/tabulator-tables/dist/css/tabulator";
 
 /*
  |--------------------------------------------------------------------------
