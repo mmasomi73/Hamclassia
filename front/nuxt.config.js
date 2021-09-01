@@ -36,9 +36,9 @@ export default {
         '@nuxtjs/axios',
         '@nuxtjs/auth-next'
     ],
-    axios:{
-        BaseURL:'http://localhost:8000',
-        credentials:true
+    axios: {
+        baseURL: 'http://localhost:8000/',
+        credentials: true
     },
     auth: {
         strategies: {
@@ -55,8 +55,15 @@ export default {
                     user:{
                         url:"api/user"
                     },
+                },
+                user:{
+                    property:false
                 }
             },
+        },
+        redirect:{
+            login:'/auth/sign-in',
+            home:'/',
         }
     },
     // Build Configuration: https://go.nuxtjs.dev/config-build

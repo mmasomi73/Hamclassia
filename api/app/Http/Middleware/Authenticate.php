@@ -17,5 +17,6 @@ class Authenticate extends Middleware
         if (! $request->expectsJson()) {
             return route('login');
         }
+        return redirect(url(env('FRONT_URL')), 200);
     }
 }

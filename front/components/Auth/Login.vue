@@ -1,7 +1,7 @@
 <template>
     <div class="flex page-font items-center justify-center w-full h-screen bg-gray-100">
         <div class="w-full max-w-md">
-            <form class="bg-white shadow-lg rounded-xl px-12 pt-6 pb-8 mb-4 rtl">
+            <form @submit.prevent="login" class="bg-white shadow-lg rounded-xl px-12 pt-6 pb-8 mb-4 rtl">
                 <!-- @csrf -->
                 <div class="text-gray-800 text-2xl flex justify-center border-b-2 py-2 mb-4" >
                     ورود به حساب کاربری
@@ -23,7 +23,7 @@
                 </div>
                 <div class="mb-6">
                     <label class="block text-gray-700 text-sm font-normal mb-2" for="password" >
-                        Password
+                        رمزعبور
                     </label>
                     <input
                         class="shadow ltr appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"
@@ -35,6 +35,9 @@
                         required
                         autocomplete="current-password"
                     />
+                </div>
+                <div v-if="errors" class="flex items-center justify-center bg-red-400 text-white mb-2 rounded-md">
+                    {{errors}}
                 </div>
                 <div class="flex items-center justify-between">
                     <button class="px-4 py-2 rounded text-white inline-block shadow-lg bg-blue-500 hover:bg-blue-600 focus:bg-blue-700" type="submit">ورود</button>
@@ -61,9 +64,28 @@ export default {
             form:{
                 email:"",
                 password:""
+            },
+            errors:null
+        }
+    },
+    methods:{
+        async login(){
+            try {
+                await this.$auth.loginWith('laravelSanctum', {data:this.form})
+            } catch (error) {
+                if (error.response && error.response.status === 422){
+                    console.log(error.response)
+                    this.errors = "نام کاربری یا رمز عبور اشتباه است.";
+                }
             }
         }
     }
 }
 </script>
+
+<style scoped>
+.ltr{
+    direction: ltr;
+}
+</style>
 
