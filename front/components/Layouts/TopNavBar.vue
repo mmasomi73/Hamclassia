@@ -9,7 +9,7 @@
                     </svg>
                     </NuxtLink>
                 </li>
-                <li class="mx-2 cursor-pointer"> <NuxtLink to="/dashboard" >داشبورد</NuxtLink> </li>
+                <li v-if="this.$auth.loggedIn" class="mx-2 cursor-pointer"> <NuxtLink to="/dashboard" >داشبورد</NuxtLink> </li>
                 <li class="mx-2 cursor-pointer"> <NuxtLink to="/blog" >بلاگ</NuxtLink> </li>
                 <li class="mx-2 cursor-pointer"> <NuxtLink to="/about-us" >درباره ما</NuxtLink> </li>
 
@@ -17,10 +17,10 @@
         </div>
         <div>
             <ul class="flex rtl space-x-3">
-                <li class="mx-2 cursor-pointer"> <NuxtLink to="/dashboard/profile" >پروفایل</NuxtLink> </li>
-                <li class="mx-2 cursor-pointer"> <NuxtLink to="/logout" >خروج</NuxtLink> </li>
-                <li class="mx-2 cursor-pointer"> <NuxtLink to="/auth/sign-in" >ورود</NuxtLink> </li>
-                <li class="mx-2 cursor-pointer"> <NuxtLink to="/auth/sign-up" >ثبت نام</NuxtLink> </li>
+                <li v-if="this.$auth.loggedIn" class="mx-2 cursor-pointer"> <NuxtLink to="/dashboard/profile" >پروفایل</NuxtLink> </li>
+                <li v-if="this.$auth.loggedIn" class="mx-2 cursor-pointer"> <NuxtLink to="/logout" >خروج</NuxtLink> </li>
+                <li v-if="!this.$auth.loggedIn" class="mx-2 cursor-pointer"> <NuxtLink to="/auth/sign-in" >ورود</NuxtLink> </li>
+                <li v-if="!this.$auth.loggedIn" class="mx-2 cursor-pointer"> <NuxtLink to="/auth/sign-up" >ثبت نام</NuxtLink> </li>
             </ul>
         </div>
     </nav>

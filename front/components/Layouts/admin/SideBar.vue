@@ -1,0 +1,92 @@
+<template>
+    <nav class="page-font bg-gray-800 border-r-1 flex flex-col m-3 ml-0 pb-6 pt-4 px-7 rounded-xl shadow-2xl w-64 z-10">
+        <!-- SideNavBar -->
+
+        <div class="flex flex-row items-center justify-between pb-2">
+            <!-- Hearder -->
+            <span class="text-lg font-semibold capitalize text-gray-100 border-b-2 border-gray-100 w-full">
+                        همکلاسیا
+            </span>
+        </div>
+
+        <div class="mt-8 text-center text-gray-100">
+            <!-- User info -->
+            <img class="h-24 mx-auto object-cover rounded-full text-center w-24"
+                 src="/images/avatar.jpg"
+                 alt="enoshima profile"/>
+            <h2 class="mt-4 text-xl dark:text-gray-300 font-extrabold capitalize">
+                میثم
+            </h2>
+            <span class="text-sm dark:text-gray-300">
+                <span class="font-sm text-gray-100 dark:text-green-300">
+                     aida6@gmail.com
+                </span>
+            </span>
+        </div>
+
+        <ul class="mt-2 text-gray-600">
+            <!-- Links -->
+            <li class="mt-4 shadow py-2 bg-white dark:bg-gray-200 rounded-lg shadow-lg -mr-4">
+                <a href="#" class="flex pr-4">
+                    <i class="leading-none feather-grid"></i>
+                    <span class="mr-2 capitalize font-semibold text-blue-500 dark:text-gray-300">
+                                داشبود
+                    </span>
+                </a>
+            </li>
+            <li class="mt-4 shadow py-2 bg-white dark:bg-gray-200 rounded-lg shadow-lg -mr-4">
+                <a href="#" class="flex pr-4">
+                    <i class="feather-inbox"></i>
+                    <span class="mr-2 capitalize font-medium text-gray-600 dark:text-gray-300">
+                                صندوق ورودی
+                    </span>
+                </a>
+            </li>
+            <li class="mt-4 shadow py-2 bg-white dark:bg-gray-200 rounded-lg shadow-lg -mr-4">
+                <a href="#" class="flex pr-4">
+                    <i class="feather-send"></i>
+                    <span class="mr-2 capitalize font-medium text-gray-600 dark:text-gray-300">
+                                ارسال پیامک
+                    </span>
+                </a>
+            </li>
+            <li class="mt-4 shadow py-2 bg-white dark:bg-gray-200 rounded-lg shadow-lg -mr-4">
+                <a href="#" class="flex pr-4">
+                    <i class="feather-users"></i>
+                    <span class="mr-2 capitalize font-medium text-gray-600 dark:text-gray-300">
+                        کاربران
+                    </span>
+                </a>
+            </li>
+
+        </ul>
+
+        <div class="mt-auto py-2 bg-red-200 text-red-700 flex dark:bg-red-200 rounded-lg  shadow-lg -mr-4 cursor-pointer">
+            <!-- important action -->
+            <a href="#" class="flex pr-4">
+                <i class="leading-none feather-log-out"></i>
+                <span class="mr-2 capitalize font-medium">خروج</span>
+            </a>
+
+        </div>
+    </nav>
+
+</template>
+
+<script>
+export default {
+    name: "SideBar"
+}
+</script>
+
+<style scoped>
+.page-font{
+    font-family: "Mikhak", sans-serif;
+}
+.rtl{
+    direction: rtl;
+}
+.ltr{
+    direction: ltr;
+}
+</style>
