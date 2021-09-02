@@ -3,22 +3,23 @@
         <div class="flex w-full ">
             <section class="flex flex-col pt-3 w-full p-4 bg-white border rounded-xl">
                 <!-- = Users = -->
+                <Toast />
                 <section class=" rounded-xl mim-fa-fnt">
                     <div class="pt-3">
                         <div class="flex items-center justify-center w-full">
                             <div class="w-full">
                                 <Search @search-handler="search"/>
-                                <ActionBar />
-                                <UserTable :users="this.users" />
+                                <ActionBar @bulk-action="bulkAction" />
+                                <CreateUpdate v-if="showCUForm" :key="this.updateUser ? this.updateUser.id : Math.random()" @result="createUpdateResult" :user="this.updateUser"/>
+                                <UserTable @user-action="userAction" :users="this.users" />
                             </div>
                         </div>
                     </div>
 
                 </section>
             </section>
-
-
         </div>
+        <Toast :type="this.toast.type" :message="this.toast.message" />
     </div>
 </template>
 
@@ -26,15 +27,23 @@
 import Search from "../../../components/Admin/Users/Search";
 import UserTable from "../../../components/Admin/Users/UserTable";
 import ActionBar from "../../../components/Admin/Users/ActionBar";
+import CreateUpdate from "../../../components/Admin/Users/CreateUpdate";
+import Toast from "../../../components/Landing/Partials/Toast";
 
 export default {
     name: "index",
-    components: {ActionBar, UserTable, Search},
+    components: {Toast, CreateUpdate, ActionBar, UserTable, Search},
     layout: 'admin',
     data : ()=>{
         let users = [];
         return {
-            users:users
+            users:users,
+            updateUser:null,
+            showCUForm:false,
+            toast : {
+                type:'',
+                message:''
+            }
         }
     },
     methods: {
@@ -45,6 +54,53 @@ export default {
                     this.users.push({...user ,checked:false})
                 }
             })
+        },
+        userAction(data){
+            if (data.action === 'delete'){
+                this.$axios.$delete('api/users/'+data.id).then(resdata =>{
+                    for (const user in this.users) {
+                        if(this.users[user].id === data.id){
+                            this.users.splice(user, 1);
+                        }
+                    }
+                }).catch(error => {
+                    alert('error')
+                })
+            }
+            else if (data.action === 'edit'){
+                this.updateUser = null;
+                this.showCUForm = false;
+                for (const user of this.users) {
+                    if (user.id === data.id){
+                        this.showCUForm = true;
+                        this.updateUser = user;
+                    }
+                }
+
+            }
+        },
+        bulkAction(action){
+            if (action === 'create'){
+                if (this.updateUser !== null) {
+                    this.showCUForm = true;
+                }
+                else{
+                    this.showCUForm = !this.showCUForm;
+                }
+                this.updateUser = null;
+            }
+        },
+        createUpdateResult (result){
+            if (result === 'success'){
+                this.showCUForm = false;
+                this.updateUser = null;
+                this.users = [];
+                this.$axios.$get('api/users').then(data =>{
+                    for (const user of data) {
+                        this.users.push({...user ,checked:false})
+                    }
+                });
+            }
         }
     },
     created() {

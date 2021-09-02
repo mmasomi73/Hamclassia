@@ -42,19 +42,7 @@ export default {
     },
     methods :{
         userAction(data){
-            if (data.action === 'delete'){
-                this.$axios.$delete('api/users/'+data.id).then(resdata =>{
-                    for (const user in this.users) {
-                        if(this.users[user].id === data.id){
-                            this.users.splice(user, 1);
-                        }
-                    }
-                }).catch(error => {
-                    alert('error')
-                })
-
-
-            }
+            this.$emit('user-action', data)
         },
         userSelectAction(data){
             if(this.selecteds.indexOf(data.id) === -1) {

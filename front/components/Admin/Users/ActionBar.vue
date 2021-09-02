@@ -3,7 +3,7 @@
         <ul class="flex text-gary-500 ltr mt-6">
 
             <!-- --------------= Delete =-------------- -->
-            <li class="content-center text-gray-400 cursor-pointer flex hover:bg-blue-600 hover:text-white mr-2 p-2 rounded-md">
+            <li @click="action('delete')" class="content-center text-gray-400 cursor-pointer flex hover:bg-blue-600 hover:text-white mr-2 p-2 rounded-md">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                      viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -11,7 +11,7 @@
                 </svg>
             </li>
             <!-- --------------= Download =-------------- -->
-            <li class="content-center text-gray-400 cursor-pointer flex hover:bg-blue-600 hover:text-white mr-2 p-2 rounded-md">
+            <li @click="action('download')" class="content-center text-gray-400 cursor-pointer flex hover:bg-blue-600 hover:text-white mr-2 p-2 rounded-md">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                      viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -19,7 +19,7 @@
                 </svg>
             </li>
             <!-- --------------= Create =-------------- -->
-            <li class="content-center text-gray-400 cursor-pointer flex hover:bg-blue-600 hover:text-white mr-2 p-2 rounded-md">
+            <li @click="action('create')" class="content-center text-gray-400 cursor-pointer flex hover:bg-blue-600 hover:text-white mr-2 p-2 rounded-md">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none"
                      viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -32,7 +32,12 @@
 
 <script>
 export default {
-    name: "ActionBar"
+    name: "ActionBar",
+    methods:{
+        action(action) {
+            this.$emit('bulk-action',action)
+        }
+    }
 }
 </script>
 

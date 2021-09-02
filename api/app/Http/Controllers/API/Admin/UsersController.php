@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class UsersController extends Controller
 {
@@ -22,7 +23,13 @@ class UsersController extends Controller
     }
 
     public function store(Request $request){
-
+        $password = Str::random(8);
+        User::create([
+            'name'=>$request->get('name'),
+            'email'=>$request->get('email'),
+            'password'=>bcrypt($password),
+        ]);
+        return response(json_encode(['result'=>'user created successfully.', 'password'=>$password]),200);
     }
 
     public function show(User $user){
@@ -30,7 +37,7 @@ class UsersController extends Controller
     }
 
     public function update(User $user, Request $request){
-        $user->update($request->except('name', 'email'));
+        $user->update($request->only('name', 'email'));
         return response(json_encode(['result'=>'user updated successfully.']),200);
     }
 
