@@ -13,7 +13,7 @@
                 <label for="email" class="block text-gray-500">
                     ایمیل
                 </label>
-                <input v-model="email" type="email" id="email" name="email"
+                <input v-model="email" type="text" id="email" name="email"
                        placeholder="Email ... "
                        class="rounded-md ltr outline-none px-4 py-2 border mt-1 focus:ring-blue-500 focus:border-blue-500 block w-full shadow-sm sm:text-sm rounded-md w-full">
             </div>

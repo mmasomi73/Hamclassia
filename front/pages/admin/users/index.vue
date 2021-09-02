@@ -38,8 +38,13 @@ export default {
         }
     },
     methods: {
-        search: (data) => {
-
+        search (data){
+            this.$axios.$get('api/users', {params:{...data}}).then(data=>{
+                this.users = [];
+                for (const user of data) {
+                    this.users.push({...user ,checked:false})
+                }
+            })
         }
     },
     created() {

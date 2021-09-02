@@ -5,12 +5,12 @@
             <tr class="">
                 <th class="items-center rounded-r-md text-center w-8">
                     <span @click="bulkSelect" class="content-center cursor-pointer inline-flex items-center bg-gray-300 rounded w-4 h-4">
-                        <svg v-if="this.selecteds.length > 0 && this.selecteds.length < this.users.length" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
+                        <svg v-if="this.selecteds.length > 0 &&  this.users.length > 0 && this.selecteds.length < this.users.length" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none"
                              viewBox="0 0 24 24" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="2" d="M18 12H6"/>
                         </svg>
-                        <svg v-else-if="this.selecteds.length === this.users.length" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <svg v-else-if="this.users.length > 0 && this.selecteds.length === this.users.length" xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
                         </svg>
                     </span>

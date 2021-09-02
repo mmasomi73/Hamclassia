@@ -8,9 +8,16 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::query()->select(['id','name','email'])->get();
+        $users = User::query()->select(['id','name','email']);
+        if ($request->has('name')){
+            $users->where('name', 'LIKE',"%{$request->get('name')}%");
+        }
+        if ($request->has('email')){
+            $users->where('email', 'LIKE',"%{$request->get('email')}%");
+        }
+        $users = $users->get();
         return response($users->toJson(),200);
     }
 
