@@ -3,7 +3,6 @@
         <div class="flex w-full ">
             <section class="flex flex-col pt-3 w-full p-4 bg-white border rounded-xl">
                 <!-- = Users = -->
-                <Toast />
                 <section class=" rounded-xl mim-fa-fnt">
                     <div class="pt-3">
                         <div class="flex items-center justify-center w-full">
@@ -19,7 +18,6 @@
                 </section>
             </section>
         </div>
-        <Toast :type="this.toast.type" :message="this.toast.message" />
     </div>
 </template>
 
@@ -28,22 +26,16 @@ import Search from "../../../components/Admin/Users/Search";
 import UserTable from "../../../components/Admin/Users/UserTable";
 import ActionBar from "../../../components/Admin/Users/ActionBar";
 import CreateUpdate from "../../../components/Admin/Users/CreateUpdate";
-import Toast from "../../../components/Landing/Partials/Toast";
 
 export default {
     name: "index",
-    components: {Toast, CreateUpdate, ActionBar, UserTable, Search},
+    components: {CreateUpdate, ActionBar, UserTable, Search},
     layout: 'admin',
     data : ()=>{
-        let users = [];
         return {
-            users:users,
+            users:[],
             updateUser:null,
             showCUForm:false,
-            toast : {
-                type:'',
-                message:''
-            }
         }
     },
     methods: {

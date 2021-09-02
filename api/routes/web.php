@@ -15,6 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    $user = \App\Models\User::query()->where('name', 'LIKE', "%آیدا%")->first();
+//    $user->assignRole('admin');
+    return $user->getPermissionsViaRoles();
     return view('welcome');
 });
 

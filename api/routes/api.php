@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\Admin\RolesController;
 use App\Http\Controllers\API\Admin\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,8 +23,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::prefix('users')->name('users.')->group(function (){
     Route::get('/', [UsersController::class, 'index'])->name('index');
     Route::POST('/', [UsersController::class, 'store'])->name('store');
+    Route::delete('/bulk', [UsersController::class, 'bulkDelete'])->name('bulk.delete');
     Route::get('/{user}', [UsersController::class, 'show'])->name('show');
     Route::put('/{user}', [UsersController::class, 'update'])->name('update');
     Route::delete('/{user}', [UsersController::class, 'delete'])->name('delete');
+});
+
+Route::prefix('roles')->name('roles.')->group(function (){
+    Route::get('/', [RolesController::class, 'index'])->name('index');
+    Route::POST('/', [RolesController::class, 'store'])->name('store');
 });
 
