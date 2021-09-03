@@ -73,14 +73,15 @@ export default {
         }
     },
     methods: {
-        login() {
-            try {
-                this.$auth.loginWith('laravelSanctum', {data: this.form});
-            } catch (error) {
-                if (error.response && error.response.status === 422) {
-                    this.errors = "نام کاربری یا رمز عبور اشتباه است.";
-                }
-            }
+        async login() {
+            await this.$auth.loginWith('laravelSanctum', {data: this.form}).then(data => {
+                console.log({data:data})
+            }).catch( (error) => {
+                console.log({error:error})
+                // if (error.response && error.response.status === 422) {
+                //     this.errors = "نام کاربری یا رمز عبور اشتباه است.";
+                // }
+            });
         }
     }
 }

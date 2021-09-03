@@ -5,7 +5,9 @@ namespace App\Http\Controllers\API\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
+use Spatie\Permission\Models\Role;
 
 class UsersController extends Controller
 {
@@ -33,7 +35,7 @@ class UsersController extends Controller
     }
 
     public function show(User $user){
-        return response($user->toJson(),200);
+        return response($user->load('roles.permissions', 'permissions')->toJson(),200);
     }
 
     public function update(User $user, Request $request){
@@ -51,4 +53,12 @@ class UsersController extends Controller
         User::query()->whereIn('id', $request->get('users', []))->delete();
         return response(json_encode(['result'=>'users deleted successfully.']),200);
     }
+
+    public function updateRoles(User $user, Request $request)
+    {
+        $roles = Role::query()->select('name')->whereIn('id', $request->get('roles'))->get()->pluck('name');
+        $user->syncRoles($roles);
+        return response(json_encode(['result'=>'user Roles Updated successfully.']),200);
+    }
+
 }

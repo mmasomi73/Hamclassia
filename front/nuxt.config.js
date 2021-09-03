@@ -38,7 +38,8 @@ export default {
     ],
     axios: {
         baseURL: 'http://localhost:8000/',
-        credentials: true
+        credentials: true,
+        withCredentials: true,
     },
     auth: {
         strategies: {
@@ -53,7 +54,7 @@ export default {
                         url:"/logout"
                     },
                     user:{
-                        url:"api/user"
+                        url:"/api/user"
                     },
                 },
                 user:{

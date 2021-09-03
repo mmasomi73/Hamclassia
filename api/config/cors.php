@@ -20,7 +20,12 @@ return [
         'login',
         'logout',
         'register',
+        'user/password',
+        'forgot-password',
         'reset-password',
+        'sanctum/csrf-cookie',
+        'user/profile-information',
+        'email/verification-notification',
         'sanctum/csrf-cookie'
     ],
 

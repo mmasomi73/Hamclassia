@@ -17,7 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+
+//Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+Route::get('/user', function (Request $request) {
+    $user = \App\Models\User::query()->where('name', 'LIKE', "%آیدا%")->first();
+    auth()->login($user);
     return $request->user();
 });
 
@@ -27,6 +33,7 @@ Route::prefix('users')->name('users.')->group(function (){
     Route::delete('/bulk', [UsersController::class, 'bulkDelete'])->name('bulk.delete');
     Route::get('/{user}', [UsersController::class, 'show'])->name('show');
     Route::put('/{user}', [UsersController::class, 'update'])->name('update');
+    Route::put('/{user}/roles', [UsersController::class, 'updateRoles'])->name('update.roles');
     Route::delete('/{user}', [UsersController::class, 'delete'])->name('delete');
 });
 

@@ -21,6 +21,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/*', function () {
-    return redirect(url(env("FRONT_URL")));
-});
+//Route::get('/*', function () {
+//    return redirect(url(env("FRONT_URL")));
+//});
