@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\Admin\PermissionsController;
 use App\Http\Controllers\API\Admin\RolesController;
 use App\Http\Controllers\API\Admin\UsersController;
 use Illuminate\Http\Request;
@@ -32,5 +33,13 @@ Route::prefix('users')->name('users.')->group(function (){
 Route::prefix('roles')->name('roles.')->group(function (){
     Route::get('/', [RolesController::class, 'index'])->name('index');
     Route::POST('/', [RolesController::class, 'store'])->name('store');
+    Route::get('/{role}', [RolesController::class, 'show'])->name('show');
+    Route::put('/{role}', [RolesController::class, 'update'])->name('update');
+    Route::get('/{role}/permissions', [RolesController::class, 'permissions'])->name('show.permissions');
+    Route::put('/{role}/permissions', [RolesController::class, 'updatePermissions'])->name('update.permissions');
+});
+
+Route::prefix('permissions')->name('permissions.')->group(function (){
+    Route::get('/', [PermissionsController::class, 'index'])->name('index');
 });
 

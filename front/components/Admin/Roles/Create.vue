@@ -1,6 +1,11 @@
 <template>
     <div class="w-full rounded-xl mt-3">
         <form @submit.prevent="submit" class="grid grid-cols-1 gap-6">
+            <div class="col">
+                <div class="px-4 text-medium w-full">
+                    افزودن نقش جدید
+                </div>
+            </div>
             <div class="col ltr">
                 <label for="name" class="block text-gray-500">
                     Role Name :
@@ -23,7 +28,7 @@
 
 <script>
 export default {
-    name: "CreateUpdate",
+    name: "Create",
 
     data: function () {
         return {

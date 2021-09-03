@@ -1,12 +1,12 @@
 <template>
-    <div class="">
-        <div class="flex w-full ">
+    <div class="flex flex-col">
+        <div class="flex w-full">
             <section class="flex flex-col pt-3 w-8/12 md-w-full space-x-2">
                 <!-- = Users = -->
                 <section class="p-4 bg-white border rounded-xl m-2">
                     <div class="flex items-center justify-center w-full">
                         <div class="w-full">
-                            <List :roles="this.roles"/>
+                            <List @role-action="RoleAction" :roles="this.roles"/>
                         </div>
                     </div>
 
@@ -16,26 +16,37 @@
                 <!-- = Users = -->
                 <section class="p-4 bg-white border rounded-xl m-2">
                     <div class="flex items-center justify-center w-full">
-                        <CreateUpdate @result="createUpdateResult"/>
+                        <Create @result="createUpdateResult"/>
                     </div>
 
                 </section>
             </section>
         </div>
+        <section class="flex flex-col pt-3 w-full space-x-2">
+            <!-- = Users = -->
+            <section class="p-4 bg-white border rounded-xl m-2">
+                <div class="flex items-center justify-center w-full">
+                    <Update v-if="role" :role="role" :key="role.id" @result="createUpdateResult" />
+                </div>
+
+            </section>
+        </section>
     </div>
 </template>
 
 <script>
 import List from "../../../components/Admin/Roles/List";
-import CreateUpdate from "../../../components/Admin/Roles/CreateUpdate";
+import Create from "../../../components/Admin/Roles/Create";
+import Update from "../../../components/Admin/Roles/Update";
 
 export default {
     name: "index",
-    components: {CreateUpdate, List},
+    components: {Update, Create, List},
     layout: 'admin',
     data: () => {
         return {
             roles: [],
+            role:null
         }
     },
     methods: {
@@ -47,6 +58,16 @@ export default {
                         this.roles.push({...role, checked: false})
                     }
                 });
+            }
+        },
+        RoleAction(data){
+            if (data.action === 'edit'){
+                for (const role of this.roles) {
+                    if (role.id === data.id){
+                        this.role = role;
+                    }
+                }
+
             }
         }
     },

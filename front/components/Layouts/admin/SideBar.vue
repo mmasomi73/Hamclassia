@@ -26,29 +26,26 @@
 
         <ul class="mt-2 text-gray-600">
             <!-- Links -->
-            <li class="mt-4 shadow py-2 bg-white dark:bg-gray-200 rounded-lg shadow-lg -mr-4">
-                <a href="#" class="flex pr-4">
-                    <i class="leading-none feather-grid"></i>
-                    <span class="mr-2 capitalize font-semibold text-blue-500 dark:text-gray-300">
+            <li class="mt-4 shadow py-2 bg-white dark:bg-gray-200 rounded-lg shadow-lg -mr-4 font-medium text-gray-600 dark:text-gray-300">
+                <NuxtLink to="/admin/index" prefetch class="flex pr-4">
+                    <span class="mr-2 capitalize ">
                                 داشبود
                     </span>
-                </a>
+                </NuxtLink>
             </li>
-            <li class="mt-4 shadow py-2 bg-white dark:bg-gray-200 rounded-lg shadow-lg -mr-4">
-                <a href="#" class="flex pr-4">
-                    <i class="feather-inbox"></i>
-                    <span class="mr-2 capitalize font-medium text-gray-600 dark:text-gray-300">
-                                صندوق ورودی
+            <li class="mt-4 shadow py-2 bg-white dark:bg-gray-200 rounded-lg shadow-lg -mr-4 font-medium text-gray-600 dark:text-gray-300">
+                <NuxtLink to="/admin/users" prefetch class="flex pr-4">
+                    <span class="mr-2 capitalize">
+                                کاربران
                     </span>
-                </a>
+                </NuxtLink>
             </li>
-            <li class="mt-4 shadow py-2 bg-white dark:bg-gray-200 rounded-lg shadow-lg -mr-4">
-                <a href="#" class="flex pr-4">
-                    <i class="feather-send"></i>
-                    <span class="mr-2 capitalize font-medium text-gray-600 dark:text-gray-300">
-                                ارسال پیامک
+            <li class="mt-4 shadow py-2 bg-white dark:bg-gray-200 rounded-lg shadow-lg -mr-4 font-medium text-gray-600 dark:text-gray-300">
+                <NuxtLink to="/admin/roles" prefetch class="flex pr-4">
+                    <span class="mr-2 capitalize">
+                                نقش ها
                     </span>
-                </a>
+                </NuxtLink>
             </li>
             <li class="mt-4 shadow py-2 bg-white dark:bg-gray-200 rounded-lg shadow-lg -mr-4">
                 <a href="#" class="flex pr-4">
@@ -88,5 +85,10 @@ export default {
 }
 .ltr{
     direction: ltr;
+}
+.nuxt-link-active{
+    --tw-text-opacity: 1;
+    color: rgba(59, 130, 246, var(--tw-text-opacity));
+    font-weight: 600;
 }
 </style>
