@@ -3,7 +3,7 @@
 
         <!-- danger -->
         <div v-if="type === 'danger'" class='flex items-center text-white max-w-sm w-full bg-red-400 shadow-md rounded-lg overflow-hidden mx-auto'>
-            <div class='w-10 border-r px-2'>
+            <div class='w-10 border-l px-2'>
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                      xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -23,7 +23,7 @@
 
         <!-- success -->
         <div v-if="type === 'success'" class='flex items-center text-white max-w-sm w-full bg-green-400 shadow-md rounded-lg overflow-hidden mx-auto'>
-            <div class='w-10 border-r px-2'>
+            <div class='w-10 border-l px-2'>
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                      xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -43,7 +43,7 @@
 
         <!-- warning -->
         <div v-if="type === 'warning'" class='flex items-center text-white max-w-sm w-full bg-yellow-400 shadow-md rounded-lg overflow-hidden mx-auto'>
-            <div class='w-10 border-r px-2'>
+            <div class='w-10 border-l px-2'>
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                      xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -63,7 +63,7 @@
 
         <!-- info -->
         <div v-if="type === 'info'" class='flex items-center text-white max-w-sm w-full bg-blue-400 shadow-md rounded-lg overflow-hidden mx-auto'>
-            <div class='w-10 border-r px-2'>
+            <div class='w-10 border-l px-2'>
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                      xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

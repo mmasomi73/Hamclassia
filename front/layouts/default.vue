@@ -1,5 +1,6 @@
 <template>
     <div class="page-font rtl bg-gray-100 py-6 min-h-screen h-full">
+        <NetworkNotification/>
         <TopNavBar />
         <Nuxt />
     </div>
@@ -7,9 +8,10 @@
 
 <script>
 import TopNavBar from "../components/Layouts/TopNavBar";
+import NetworkNotification from "../components/Landing/Partials/NetworkNotification";
 export default {
     name: "default",
-    components: {TopNavBar},
+    components: {NetworkNotification, TopNavBar},
 }
 </script>
 
