@@ -5,7 +5,6 @@ namespace App\Http\Controllers\API\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Spatie\Permission\Models\Role;
 
@@ -13,33 +12,64 @@ class UsersController extends Controller
 {
     public function index(Request $request)
     {
-        $users = User::query()->select(['id','name','email']);
+        $users = User::query()->select(['id','name','family','email','mobile']);
         if ($request->has('name')){
             $users->where('name', 'LIKE',"%{$request->get('name')}%");
         }
         if ($request->has('email')){
             $users->where('email', 'LIKE',"%{$request->get('email')}%");
         }
-        $users = $users->get();
-        return response($users->toJson(),200);
+        $users = $users->with('roles')->get();
+        $collection = collect([]);
+        foreach ($users as $user) {
+            $collection->push([
+                'id'=>$user->id,
+                'name'=>$user->name,
+                'family'=>$user->family,
+                'email'=>$user->email,
+                'mobile'=>$user->mobile,
+                'roles'=>$user->roles,
+                'avatar'=>$user->getFirstMediaUrl('avatar'),
+            ]);
+        }
+        return response($collection->toJson(),200);
     }
 
     public function store(Request $request){
         $password = Str::random(8);
-        User::create([
+        $user = User::create([
             'name'=>$request->get('name'),
+            'family'=>$request->get('family'),
             'email'=>$request->get('email'),
+            'mobile'=>$request->get('mobile'),
             'password'=>bcrypt($password),
         ]);
+        if($request->hasFile('avatar') && $request->file('avatar')->isValid()){
+            $user->addMediaFromRequest('avatar')->toMediaCollection('avatar');
+        }
         return response(json_encode(['result'=>'user created successfully.', 'password'=>$password]),200);
     }
 
     public function show(User $user){
-        return response($user->load('roles.permissions', 'permissions')->toJson(),200);
+        $user->load('roles.permissions', 'permissions');
+        $collection = collect((object) [
+            'id'=>$user->id,
+            'name'=>$user->name,
+            'family'=>$user->family,
+            'email'=>$user->email,
+            'mobile'=>$user->mobile,
+            'roles'=>$user->roles,
+            'permissions'=>$user->permissions,
+            'avatar'=>$user->getFirstMediaUrl('avatar'),
+        ]);
+        return response($collection->toJson(),200);
     }
 
-    public function update(User $user, Request $request){
-        $user->update($request->only('name', 'email'));
+    public function update(Request $request, User $user){
+        $user->update($request->only('name', 'family', 'email', 'mobile'));
+        if($request->hasFile('avatar') && $request->file('avatar')->isValid()){
+            $user->addMediaFromRequest('avatar')->toMediaCollection('avatar');
+        }
         return response(json_encode(['result'=>'user updated successfully.']),200);
     }
 

@@ -17,6 +17,8 @@
                 </th>
                 <th class="p-3 text-right">نام و نام خانوادگی</th>
                 <th class="p-3 text-center">ایمیل</th>
+                <th class="p-3 text-center">موبایل</th>
+                <th class="p-3 text-center">نقش ها</th>
                 <th class="p-3 text-left rounded-l-md">عملیات</th>
             </tr>
             </thead>

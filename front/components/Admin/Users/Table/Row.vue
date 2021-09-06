@@ -12,13 +12,25 @@
         </td>
         <td class="p-3 text-right">
             <div class="flex align-items-center">
-                <div class="ml-3">
-                    <div class="">{{ this.user && this.user.name }}</div>
+                <div class="ml-3 flex flex-row items-center">
+                    <span class="w-8 h-8 rounded-full ml-2 bg-gray-200 block">
+                        <img v-if="this.user && this.user.avatar" :src="this.user && this.user.avatar" class="rounded-full" :alt="this.user && (this.user.name[0])">
+                        <span v-else class="flex items-center w-full h-full justify-center">{{this.user && (this.user.name[0])}}</span>
+                    </span>
+                    <div class="">{{ this.user && (this.user.name + ' ' + (this.user.family || '')) }}</div>
                 </div>
             </div>
         </td>
         <td class="p-3 text-center ltr">
             {{this.user && this.user.email}}
+        </td>
+        <td class="p-3 text-center ltr">
+            {{this.user && this.user.mobile || '-'}}
+        </td>
+        <td class="p-3 text-center ltr">
+            <span v-for="role in this.user.roles" class="px-2 m-1 bg-gray-200 text-sm rounded-full">
+                {{role.name}}
+            </span>
         </td>
         <td class="p-3 text-left  rounded-l-md">
             <div class="flex ltr text-left">
