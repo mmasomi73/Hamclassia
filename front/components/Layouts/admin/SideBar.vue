@@ -12,14 +12,14 @@
         <div class="mt-8 text-center text-gray-100">
             <!-- User info -->
             <img class="h-24 mx-auto object-cover rounded-full text-center w-24"
-                 src="/images/avatar.jpg"
-                 alt="enoshima profile"/>
-            <h2 class="mt-4 text-xl dark:text-gray-300 font-extrabold capitalize">
-                میثم
+                 :src="this.$auth.user.avatar || '/images/avatar.jpg'"
+                 :alt="this.$auth.user.name + ' ' + (this.$auth.user.family || '')"/>
+            <h2 class="mt-4 text-xl dark:text-gray-300 font-bold">
+                {{this.$auth.user.name + ' ' + (this.$auth.user.family || '')}}
             </h2>
             <span class="text-sm dark:text-gray-300">
                 <span class="font-sm text-gray-100 dark:text-green-300">
-                     aida6@gmail.com
+                     {{this.$auth.user.email}}
                 </span>
             </span>
         </div>
@@ -58,12 +58,12 @@
 
         </ul>
 
-        <div class="mt-auto py-2 bg-red-200 text-red-700 flex dark:bg-red-200 rounded-lg  shadow-lg -mr-4 cursor-pointer">
+        <div @click.prevent="logout" class="mt-auto py-2 bg-red-200 text-red-700 flex dark:bg-red-200 rounded-lg  shadow-lg -mr-4 cursor-pointer">
             <!-- important action -->
-            <a href="#" class="flex pr-4">
+            <div  class="flex pr-4">
                 <i class="leading-none feather-log-out"></i>
                 <span class="mr-2 capitalize font-medium">خروج</span>
-            </a>
+            </div>
 
         </div>
     </nav>
@@ -72,7 +72,12 @@
 
 <script>
 export default {
-    name: "SideBar"
+    name: "SideBar",
+    methods:{
+        async logout() {
+            await this.$auth.logout();
+        },
+    }
 }
 </script>
 

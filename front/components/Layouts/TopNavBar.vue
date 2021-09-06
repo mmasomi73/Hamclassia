@@ -10,6 +10,7 @@
                     </NuxtLink>
                 </li>
                 <li v-if="this.$auth.loggedIn" class="mx-2 cursor-pointer"> <NuxtLink to="/dashboard" >داشبورد</NuxtLink> </li>
+                <li v-if="is_admin" class="mx-2 cursor-pointer"> <NuxtLink to="/admin/users" >پنل مدیریت</NuxtLink> </li>
                 <li class="mx-2 cursor-pointer"> <NuxtLink to="/blog" >بلاگ</NuxtLink> </li>
                 <li class="mx-2 cursor-pointer"> <NuxtLink to="/about-us" >درباره ما</NuxtLink> </li>
 
@@ -28,7 +29,21 @@
 
 <script>
 export default {
-    name: "TopNavBar"
+    name: "TopNavBar",
+    data: function (){
+      return {
+        is_admin:false
+      }
+    },
+    created() {
+      if (this.$auth.loggedIn){
+        for (const role of this.$auth.user.roles) {
+          if (role.name === 'admin'){
+            this.is_admin = true;
+          }
+        }
+      }
+    }
 }
 </script>
 

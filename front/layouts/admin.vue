@@ -12,6 +12,7 @@ import SideBar from "../components/Layouts/admin/SideBar";
 
 export default {
     name: "admin",
+    middleware: 'auth',
     components: {SideBar}
 }
 </script>
