@@ -15,9 +15,39 @@
                         </svg>
                     </span>
                 </th>
-                <th class="p-3 text-right">نام و نام خانوادگی</th>
-                <th class="p-3 text-center">ایمیل</th>
-                <th class="p-3 text-center">موبایل</th>
+                <th @click="sorting('name')" class="p-3 text-right cursor-pointer">
+                    <div class="flex flex-row">
+                        نام و نام خانوادگی
+                        <svg v-if="sort_type === 'asc' && sort_by === 'name' " xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                        </svg>
+                        <svg v-else-if="sort_type === 'desc' && sort_by === 'name' " xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                </th>
+                <th @click="sorting('email')" class="p-3 text-center cursor-pointer">
+                    <div class="flex flex-row justify-center">
+                        ایمیل
+                        <svg v-if="sort_type === 'asc' && sort_by === 'email' " xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                        </svg>
+                        <svg v-else-if="sort_type === 'desc' && sort_by === 'email' " xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                </th>
+                <th @click="sorting('mobile')" class="p-3 text-center cursor-pointer">
+                    <div class="flex flex-row justify-center">
+                        موبایل
+                        <svg v-if="sort_type === 'asc' && sort_by === 'mobile' " xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                        </svg>
+                        <svg v-else-if="sort_type === 'desc' && sort_by === 'mobile' " xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                        </svg>
+                    </div>
+                </th>
                 <th class="p-3 text-center">نقش ها</th>
                 <th class="p-3 text-left rounded-l-md">عملیات</th>
             </tr>
@@ -39,7 +69,9 @@ export default {
     },
     data : ()=>{
         return {
-            selecteds:[]
+            selecteds:[],
+            sort_by: 'created_at',
+            sort_type: 'desc',
         }
     },
     methods :{
@@ -69,6 +101,16 @@ export default {
                     }
                 }
             }
+        },
+        sorting(sort){
+            if (sort === this.sort_by){
+                this.sort_type = this.sort_type === 'asc' ? 'desc' : 'asc';
+            }
+            this.sort_by = sort;
+            this.$emit('sorting', {
+                sort_by: this.sort_by,
+                sort_type: this.sort_type,
+            })
         }
     },
 }
